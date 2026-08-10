@@ -1,0 +1,24 @@
+{
+  "name": "app_localizacao",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Rauatorres/rastreador-de-dispositivos#readme",
+  "bugs": {
+    "url": "https://github.com/Rauatorres/rastreador-de-dispositivos/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rauatorres/rastreador-de-dispositivos.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "./dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./dist/app"
+  },
+  "dependencies": {
+    "fastify": "^5.11.3"
+  }
+}
