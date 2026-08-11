@@ -1,6 +1,9 @@
-POST http://localhost:3000/connect
-Content-Type: application/json
+# POST http://localhost:3000/connect_device
+# Content-Type: application/json
 
-{
-    "teste": "testando"
-}
+# {
+#     "ipAddress": "teste2",
+#     "name": "testando"
+# }
+
+DELETE http://localhost:3000/remove_device/8435f1ee-719e-40c2-98a2-9c86262a821c
