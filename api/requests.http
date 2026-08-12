@@ -6,4 +6,13 @@
 #     "name": "testando"
 # }
 
-DELETE http://localhost:3000/remove_device/8435f1ee-719e-40c2-98a2-9c86262a821c
+# DELETE http://localhost:3000/remove_device/8435f1ee-719e-40c2-98a2-9c86262a821c
+
+PATCH http://localhost:3000/update_device/07357a99-c28c-4d40-bcad-1fd8036e1698
+Content-Type: application/json
+
+{
+    
+    "ipAddress": "novo ip address 2",
+    "name": "novo name 2"
+}
