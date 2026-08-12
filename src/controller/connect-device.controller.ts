@@ -15,7 +15,7 @@ export default function connectDeviceController(fastify: FastifyInstance) {
           const bodyDBO = body as ConnectionConfigsDBO;
           const randomId = crypto.randomUUID();
           const deviceConfigs: DeviceConfigs = {
-            deviceId: randomId,
+            connectionId: randomId,
             ipAddress: bodyDBO.ipAddress,
             name: bodyDBO.name,
           };
@@ -26,16 +26,18 @@ export default function connectDeviceController(fastify: FastifyInstance) {
           writeToJSONFile(connectedDevicesPath, newConnectedDevices);
 
           return {
+            success: true,
             msg: "device connected succcessfully",
-            deviceConfigs: deviceConfigs,
           };
         } else {
           return {
+            success: false,
             error: "connection configurations proprety is missing",
           };
         }
       } else {
         return {
+          success: false,
           error: "the request content must be a json object",
         };
       }

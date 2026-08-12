@@ -1,3 +1,3 @@
 export default interface RemoveDeviceDBO {
-  deviceId: string;
+  connectionId: string;
 }

@@ -19,6 +19,7 @@
     "dev": "nodemon ./dist/app"
   },
   "dependencies": {
+    "@fastify/cors": "^11.3.0",
     "@fastify/formbody": "^9.0.0",
     "@fastify/multipart": "^10.1.0",
     "fastify": "^5.11.3",

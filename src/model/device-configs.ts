@@ -1,5 +1,5 @@
 export default interface DeviceConfigs {
-  deviceId: string;
+  connectionId: string;
   ipAddress: string;
   name: string;
 }

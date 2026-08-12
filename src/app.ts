@@ -2,11 +2,15 @@ import Fastify from "fastify";
 import routes from "./routes.js";
 import Formbody from "@fastify/formbody";
 import fastifyMultipart from "@fastify/multipart";
+import fastifyCors from "@fastify/cors";
 
 const fastify = Fastify({ logger: true });
 
 fastify.register(Formbody);
 fastify.register(fastifyMultipart);
+fastify.register(fastifyCors, {
+  origin: ["*"],
+});
 fastify.register(routes);
 
 fastify.listen({ port: 3000 }, (err, adress) => {

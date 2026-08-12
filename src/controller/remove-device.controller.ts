@@ -5,31 +5,35 @@ import writeToJSONFile from "../shared/utils/writeToJSONFile.js";
 
 export default function removeDeviceController(fastify: FastifyInstance) {
   fastify.delete(
-    "/remove_device/:deviceId",
+    "/remove_device/:connectionId",
     async (request: FastifyRequest, reply: FastifyReply) => {
       const requestParams = request.params as RemoveDeviceDBO;
 
-      if (!requestParams.deviceId) return { error: "device id not specified" };
+      if (!requestParams.connectionId)
+        return { success: false, error: "device id not specified" };
 
       const params = requestParams as RemoveDeviceDBO;
-      const deviceId = params.deviceId;
+      const connectionId = params.connectionId;
       const connectedDevicesPath = "src/db/connected-devices.json";
       const connectedDevices = await readJSONFile(connectedDevicesPath);
 
       if (
-        !connectedDevices.some((device) => device.deviceId == params.deviceId)
+        !connectedDevices.some(
+          (device) => device.connectionId == params.connectionId,
+        )
       ) {
-        return { error: "device not found" };
+        return { success: false, error: "device not found" };
       }
 
       const newConnectedDevicesList = connectedDevices.filter((device) => {
-        return device.deviceId != deviceId;
+        return device.connectionId != connectionId;
       });
 
       writeToJSONFile(connectedDevicesPath, newConnectedDevicesList);
 
       return {
-        msg: `the device ${params.deviceId} was removed successfuly `,
+        success: true,
+        msg: `the device ${params.connectionId} was removed successfuly `,
       };
     },
   );

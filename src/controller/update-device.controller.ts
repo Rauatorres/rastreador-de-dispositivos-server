@@ -5,25 +5,26 @@ import writeToJSONFile from "../shared/utils/writeToJSONFile.js";
 
 export default function updateDeviceController(fastify: FastifyInstance) {
   fastify.patch(
-    "/update_device/:deviceId",
+    "/update_device/:connectionId",
     async (request: FastifyRequest, reply: FastifyReply) => {
-      const requestParams = request.params as { deviceId: string };
+      const requestParams = request.params as { connectionId: string };
       const requestBody = request.body as UpdateDeviceDBO;
       const connectedDevicesPath = "src/db/connected-devices.json";
       const connectedDevices = await readJSONFile(connectedDevicesPath);
 
-      if (!requestParams.deviceId) return { error: "device id not especified" };
+      if (!requestParams.connectionId)
+        return { success: false, error: "device id not especified" };
 
       const device = connectedDevices.find(
-        (device) => device.deviceId == requestParams.deviceId,
+        (device) => device.connectionId == requestParams.connectionId,
       );
 
-      if (!device) return { error: "device not found" };
+      if (!device) return { success: false, error: "device not found" };
 
       const updatedDevice = { ...device, ...requestBody };
 
       const newConnectedDevices = connectedDevices.map((device) => {
-        if (device.deviceId == updatedDevice.deviceId) {
+        if (device.connectionId == updatedDevice.connectionId) {
           return (device = updatedDevice);
         } else {
           return device;
@@ -32,7 +33,10 @@ export default function updateDeviceController(fastify: FastifyInstance) {
 
       writeToJSONFile(connectedDevicesPath, newConnectedDevices);
 
-      return { msg: `successfuly updated device ${updatedDevice.deviceId} ` };
+      return {
+        success: true,
+        msg: `successfuly updated device ${updatedDevice.connectionId} `,
+      };
     },
   );
 }
