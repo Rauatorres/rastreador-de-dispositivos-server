@@ -28,6 +28,7 @@ export default function connectDeviceController(fastify: FastifyInstance) {
           return {
             success: true,
             msg: "device connected succcessfully",
+            connectionId: deviceConfigs.connectionId,
           };
         } else {
           return {

@@ -10,6 +10,7 @@ fastify.register(Formbody);
 fastify.register(fastifyMultipart);
 fastify.register(fastifyCors, {
   origin: ["*"],
+  methods: ["*"],
 });
 fastify.register(routes);
 
