@@ -36,6 +36,7 @@ export default function updateDeviceController(fastify: FastifyInstance) {
       return {
         success: true,
         msg: `successfuly updated device ${updatedDevice.connectionId} `,
+        result: updatedDevice,
       };
     },
   );
