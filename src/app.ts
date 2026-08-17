@@ -3,8 +3,12 @@ import routes from "./routes.js";
 import Formbody from "@fastify/formbody";
 import fastifyMultipart from "@fastify/multipart";
 import fastifyCors from "@fastify/cors";
+// import fs from "node:fs";
+// import path from "node:path";
 
-const fastify = Fastify({ logger: true });
+const fastify = Fastify({
+  logger: true,
+});
 
 fastify.register(Formbody);
 fastify.register(fastifyMultipart);

@@ -16,7 +16,8 @@
   "main": "./dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --ignore 'src/db/*.json' ./dist/app"
+    "dev": "nodemon --ignore 'src/db/*.json' ./dist/app",
+    "start": "node dist/app"
   },
   "dependencies": {
     "@fastify/cors": "^11.3.0",
