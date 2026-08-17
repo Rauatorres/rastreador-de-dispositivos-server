@@ -14,7 +14,7 @@ fastify.register(fastifyCors, {
 });
 fastify.register(routes);
 
-fastify.listen({ port: 3000 }, (err, adress) => {
+fastify.listen({ port: 3000, host: "0.0.0.0" }, (err, adress) => {
   if (err) {
     fastify.log.error(err);
     process.exit(1);

@@ -9,6 +9,7 @@ export default function connectDeviceController(fastify: FastifyInstance) {
     "/connect_device",
     {},
     async (request: FastifyRequest, reply: FastifyReply) => {
+      console.log(request.body);
       if (typeof request.body == "object") {
         const body = request.body as Object;
         if (body.hasOwnProperty("ipAddress") && body.hasOwnProperty("name")) {
@@ -18,6 +19,7 @@ export default function connectDeviceController(fastify: FastifyInstance) {
             connectionId: randomId,
             ipAddress: bodyDBO.ipAddress,
             name: bodyDBO.name,
+            locale: bodyDBO.locale,
           };
           const connectedDevicesPath = "src/db/connected-devices.json";
           const connectedDevices = await readJSONFile(connectedDevicesPath);
@@ -33,7 +35,8 @@ export default function connectDeviceController(fastify: FastifyInstance) {
         } else {
           return {
             success: false,
-            error: "connection configurations proprety is missing",
+            error:
+              "connection configurations proprety 'name' or 'ipAdress' is missing",
           };
         }
       } else {
