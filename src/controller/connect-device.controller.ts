@@ -12,7 +12,7 @@ export default function connectDeviceController(fastify: FastifyInstance) {
       console.log(request.body);
       if (typeof request.body == "object") {
         const body = request.body as Object;
-        if (body.hasOwnProperty("ipAddress") && body.hasOwnProperty("name")) {
+        if (body.hasOwnProperty("name")) {
           const bodyDBO = body as ConnectionConfigsDBO;
           const randomId = crypto.randomUUID();
           const deviceConfigs: DeviceConfigs = {
@@ -34,8 +34,7 @@ export default function connectDeviceController(fastify: FastifyInstance) {
         } else {
           return {
             success: false,
-            error:
-              "connection configurations proprety 'name' or 'ipAdress' is missing",
+            error: "device name is missing",
           };
         }
       } else {
