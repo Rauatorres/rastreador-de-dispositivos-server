@@ -3,7 +3,7 @@ export default interface DeviceConfigs {
   ipAddress: string;
   name: string;
   locale: {
-    latitude: string;
-    longitude: string;
+    latitude: number;
+    longitude: number;
   };
 }
