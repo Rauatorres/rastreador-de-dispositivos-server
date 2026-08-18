@@ -17,7 +17,6 @@ export default function connectDeviceController(fastify: FastifyInstance) {
           const randomId = crypto.randomUUID();
           const deviceConfigs: DeviceConfigs = {
             connectionId: randomId,
-            ipAddress: bodyDBO.ipAddress,
             name: bodyDBO.name,
             locale: bodyDBO.locale,
           };
