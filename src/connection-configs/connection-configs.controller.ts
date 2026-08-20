@@ -18,7 +18,7 @@ export class ConnectionConfigsController {
   ) {}
 
   @Post()
-  create(@Body() createConnectionConfigDto: CreateConnectionConfigDto) {
+  connect(@Body() createConnectionConfigDto: CreateConnectionConfigDto) {
     return this.connectionConfigsService.create(createConnectionConfigDto);
   }
 
@@ -37,11 +37,11 @@ export class ConnectionConfigsController {
     @Param('id') id: string,
     @Body() updateConnectionConfigDto: UpdateConnectionConfigDto,
   ) {
-    return this.connectionConfigsService.update(+id, updateConnectionConfigDto);
+    return this.connectionConfigsService.update(id, updateConnectionConfigDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.connectionConfigsService.remove(+id);
+  disconnect(@Param('id') id: string) {
+    return this.connectionConfigsService.remove(id);
   }
 }

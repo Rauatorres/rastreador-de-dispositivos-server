@@ -13,10 +13,10 @@ export class DeviceLocale {
   id!: string;
 
   @Column({ default: 0 })
-  latitude!: number;
+  lat!: number;
 
   @Column({ default: 0 })
-  longitude!: number;
+  lng!: number;
 
   @OneToOne(() => ConnectionConfig)
   @JoinColumn()

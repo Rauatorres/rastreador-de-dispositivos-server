@@ -43,16 +43,18 @@ export class ConnectionConfigsService {
   }
 
   async update(
-    id: number,
+    id: string,
     updateConnectionConfigDto: UpdateConnectionConfigDto,
   ) {
-    return await this.connectionConfigRepository.update(
+    const res = await this.connectionConfigRepository.update(
       id,
       updateConnectionConfigDto,
     );
+    if (res.affected == 0) throw Error(`no connection with id ${id} was found`);
+    return res;
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const res = await this.connectionConfigRepository.delete(id);
     if (res.affected == 0) throw Error(`no connection with id ${id} was found`);
     return res;

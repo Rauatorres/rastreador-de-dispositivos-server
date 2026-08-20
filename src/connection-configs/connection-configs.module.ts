@@ -8,5 +8,6 @@ import { connectionConfigProviders } from './entities/connection-config.provider
   imports: [DatabaseModule],
   controllers: [ConnectionConfigsController],
   providers: [ConnectionConfigsService, ...connectionConfigProviders],
+  exports: [ConnectionConfigsService],
 })
 export class ConnectionConfigsModule {}

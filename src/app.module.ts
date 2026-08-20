@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { ConnectionConfigsModule } from './connection-configs/connection-configs.module';
 import { DeviceLocaleModule } from './device-locale/device-locale.module';
+import { DeviceLocaleHistoryModule } from './device-locale-history/device-locale-history.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), ConnectionConfigsModule, DeviceLocaleModule],
+  imports: [ConfigModule.forRoot(), ConnectionConfigsModule, DeviceLocaleModule, DeviceLocaleHistoryModule],
   controllers: [AppController],
   providers: [AppService],
 })

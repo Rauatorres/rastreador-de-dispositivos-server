@@ -15,16 +15,6 @@ import { UpdateDeviceLocaleDto } from './dto/update-device-locale.dto';
 export class DeviceLocaleController {
   constructor(private readonly deviceLocaleService: DeviceLocaleService) {}
 
-  // @Post()
-  // create(@Body() createDeviceLocaleDto: CreateDeviceLocaleDto) {
-  //   return this.deviceLocaleService.create(createDeviceLocaleDto);
-  // }
-
-  // @Get()
-  // findAll() {
-  //   return this.deviceLocaleService.findAll();
-  // }
-
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -32,9 +22,4 @@ export class DeviceLocaleController {
   ) {
     return this.deviceLocaleService.update(id, updateDeviceLocaleDto);
   }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.deviceLocaleService.remove(+id);
-  // }
 }
