@@ -1,8 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateDeviceLocaleHistoryDto } from './dto/create-device-locale-history.dto';
 import { ConnectionConfigsService } from 'src/connection-configs/connection-configs.service';
-import { Repository } from 'typeorm';
+import { LessThan, Repository } from 'typeorm';
 import { DeviceLocaleHistory } from './entities/device-locale-history.entity';
+import pastOneMonthCalc from 'src/utils/past-one-month-calc/past-one-month-calc.utils';
 
 @Injectable()
 export class DeviceLocaleHistoryService {
@@ -32,6 +33,17 @@ export class DeviceLocaleHistoryService {
   }
 
   async findAll() {
+    // const localeHistoryRegisters =
+    //   await this.deviceLoacaleHistoryRepository.find({
+    //     relations: {
+    //       connectionConfigs: true,
+    //     },
+    //   });
+
+    await this.deviceLoacaleHistoryRepository.delete({
+      date: LessThan(pastOneMonthCalc()),
+    });
+
     return await this.deviceLoacaleHistoryRepository.find({
       relations: {
         connectionConfigs: true,
@@ -69,7 +81,14 @@ export class DeviceLocaleHistoryService {
   //   return res;
   // }
 
-  remove(id: number) {
-    return `This action removes a #${id} deviceLocaleHistory`;
+  // remove(id: string) {
+  //   return `This action removes a #${id} deviceLocaleHistory`;
+  // }
+
+  async remove(id: string) {
+    const res = await this.deviceLoacaleHistoryRepository.delete(id);
+    if (res.affected == 0)
+      throw Error(`no device locale history register with id ${id} was found`);
+    return res;
   }
 }

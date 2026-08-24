@@ -50,6 +50,6 @@ export class DeviceLocaleHistoryController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.deviceLocaleHistoryService.remove(+id);
+    return this.deviceLocaleHistoryService.remove(id);
   }
 }
