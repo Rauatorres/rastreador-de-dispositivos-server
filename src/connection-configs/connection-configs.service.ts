@@ -3,24 +3,32 @@ import { CreateConnectionConfigDto } from './dto/create-connection-config.dto';
 import { UpdateConnectionConfigDto } from './dto/update-connection-config.dto';
 import { Repository } from 'typeorm';
 import { ConnectionConfig } from './entities/connection-config.entity';
+import { DeviceLocaleService } from 'src/device-locale/device-locale.service';
 
 @Injectable()
 export class ConnectionConfigsService {
   constructor(
     @Inject('CONNECTION_CONFIG_REPOSITORY')
     private connectionConfigRepository: Repository<ConnectionConfig>,
+    private deviceLocaleService: DeviceLocaleService,
   ) {}
 
   async create(createConnectionConfigDto: CreateConnectionConfigDto) {
     if (!createConnectionConfigDto.name)
       throw Error('conenction name is missing');
 
+    const newDeviceLocale = await this.deviceLocaleService.create(
+      createConnectionConfigDto.deviceLocale,
+    );
+
     const newConnection = this.connectionConfigRepository.create({
       ...createConnectionConfigDto,
-      deviceLocale: {},
+      deviceLocale: newDeviceLocale,
     });
+
     const savedConnection =
       await this.connectionConfigRepository.save(newConnection);
+    // console.log(savedConnection);
 
     return savedConnection;
   }

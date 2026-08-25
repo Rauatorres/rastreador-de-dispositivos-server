@@ -20,6 +20,7 @@ export class DeviceLocale {
 
   @OneToOne(() => ConnectionConfig, {
     cascade: true,
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   connectionConfigs!: ConnectionConfig;
