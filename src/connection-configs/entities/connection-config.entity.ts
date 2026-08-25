@@ -18,7 +18,6 @@ export class ConnectionConfig {
   @OneToOne(
     () => DeviceLocale,
     (deviceLocale) => deviceLocale.connectionConfigs,
-    { cascade: true },
   )
   deviceLocale!: DeviceLocale;
 }
