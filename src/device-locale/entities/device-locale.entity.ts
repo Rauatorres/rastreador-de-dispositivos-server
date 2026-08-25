@@ -12,10 +12,10 @@ export class DeviceLocale {
   @PrimaryGeneratedColumn()
   id!: string;
 
-  @Column({ default: 0 })
+  @Column({ type: 'float', default: 0 })
   lat!: number;
 
-  @Column({ default: 0 })
+  @Column({ type: 'float', default: 0 })
   lng!: number;
 
   @OneToOne(() => ConnectionConfig)
