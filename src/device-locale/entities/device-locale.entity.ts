@@ -18,7 +18,9 @@ export class DeviceLocale {
   @Column({ type: 'float', default: 0 })
   lng!: number;
 
-  @OneToOne(() => ConnectionConfig)
+  @OneToOne(() => ConnectionConfig, {
+    cascade: true,
+  })
   @JoinColumn()
   connectionConfigs!: ConnectionConfig;
 }
