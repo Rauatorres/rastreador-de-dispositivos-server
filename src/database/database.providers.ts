@@ -12,6 +12,7 @@ export const databaseProviders = [
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: 'postgres',
+        // database: 'rastreador-de-dispositivos',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
       });

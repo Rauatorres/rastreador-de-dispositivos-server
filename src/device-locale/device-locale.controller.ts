@@ -15,11 +15,14 @@ import { UpdateDeviceLocaleDto } from './dto/update-device-locale.dto';
 export class DeviceLocaleController {
   constructor(private readonly deviceLocaleService: DeviceLocaleService) {}
 
-  @Patch(':id')
+  @Patch(':connectionConfigsId')
   update(
-    @Param('id') id: string,
+    @Param('connectionConfigsId') connectionConfigsId: string,
     @Body() updateDeviceLocaleDto: UpdateDeviceLocaleDto,
   ) {
-    return this.deviceLocaleService.update(id, updateDeviceLocaleDto);
+    return this.deviceLocaleService.update(
+      connectionConfigsId,
+      updateDeviceLocaleDto,
+    );
   }
 }
