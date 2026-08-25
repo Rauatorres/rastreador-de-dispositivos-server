@@ -22,6 +22,8 @@ export class DeviceLocaleService {
     if (!connectionConfigs)
       throw Error(`no connection with id ${connectionConfigsId} was found`);
 
+    console.log(connectionConfigs);
+
     const res = await this.deviceLocaleRepository.update(
       connectionConfigs.deviceLocale.id,
       updateDeviceLocaleDto,
