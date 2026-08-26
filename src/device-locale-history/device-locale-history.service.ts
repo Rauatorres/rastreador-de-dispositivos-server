@@ -4,6 +4,7 @@ import { ConnectionConfigsService } from 'src/connection-configs/connection-conf
 import { LessThan, Repository } from 'typeorm';
 import { DeviceLocaleHistory } from './entities/device-locale-history.entity';
 import pastOneMonthCalc from 'src/utils/past-one-month-calc/past-one-month-calc.utils';
+import { Cron, Interval } from '@nestjs/schedule';
 
 @Injectable()
 export class DeviceLocaleHistoryService {
@@ -13,7 +14,38 @@ export class DeviceLocaleHistoryService {
     private deviceLoacaleHistoryRepository: Repository<DeviceLocaleHistory>,
   ) {}
 
-  async create(createDeviceLocaleHistoryDto: CreateDeviceLocaleHistoryDto) {
+  @Cron('00 00 00 * * *')
+  async clearHistory() {
+    await this.deviceLoacaleHistoryRepository.delete({
+      date: LessThan(pastOneMonthCalc()),
+    });
+    console.log(
+      `all device locale registers before ${pastOneMonthCalc().toString()} were deleted`,
+    );
+  }
+
+  // @Interval(1000)
+  // logger() {
+  //   console.log('testando interval');
+  // }
+
+  @Interval(1000)
+  async saveDevicesLocaleInHistory() {
+    const connectionConfigs = await this.connectionConfigsService.findAll();
+    for (const connectionConfig of connectionConfigs) {
+      // const newDeviceLocaleHistoryRegister = await this.create({
+      //   connectionConfigsId: connectionConfig.id,
+      // });
+      // console.log(newDeviceLocaleHistoryRegister);
+      await this.create({
+        connectionConfigsId: connectionConfig.id,
+      });
+    }
+  }
+
+  private async create(
+    createDeviceLocaleHistoryDto: CreateDeviceLocaleHistoryDto,
+  ) {
     if (!createDeviceLocaleHistoryDto.connectionConfigsId)
       throw Error(
         `invalid connection configs id ${createDeviceLocaleHistoryDto.connectionConfigsId}`,
@@ -40,13 +72,12 @@ export class DeviceLocaleHistoryService {
     //     },
     //   });
 
-    await this.deviceLoacaleHistoryRepository.delete({
-      date: LessThan(pastOneMonthCalc()),
-    });
-
     return await this.deviceLoacaleHistoryRepository.find({
       relations: {
         connectionConfigs: true,
+      },
+      order: {
+        date: 'ASC',
       },
     });
   }

@@ -32,9 +32,9 @@ export class DeviceLocaleService {
       updateDeviceLocaleDto,
     );
 
-    console.log(res);
+    // console.log(res);
 
-    if (res.affected == 0) throw Error(`incorrect device locale`);
+    if (res.affected == 0) throw Error(`incorrect device locale id ${id}`);
 
     return res;
   }

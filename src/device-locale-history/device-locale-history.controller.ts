@@ -1,14 +1,14 @@
 import {
   Controller,
   Get,
-  Post,
+  // Post,
   Body,
   // Patch,
   Param,
   Delete,
 } from '@nestjs/common';
 import { DeviceLocaleHistoryService } from './device-locale-history.service';
-import { CreateDeviceLocaleHistoryDto } from './dto/create-device-locale-history.dto';
+// import { CreateDeviceLocaleHistoryDto } from './dto/create-device-locale-history.dto';
 // import { UpdateDeviceLocaleHistoryDto } from './dto/update-device-locale-history.dto';
 
 @Controller('device-locale-history')
@@ -17,10 +17,10 @@ export class DeviceLocaleHistoryController {
     private readonly deviceLocaleHistoryService: DeviceLocaleHistoryService,
   ) {}
 
-  @Post()
-  create(@Body() createDeviceLocaleHistoryDto: CreateDeviceLocaleHistoryDto) {
-    return this.deviceLocaleHistoryService.create(createDeviceLocaleHistoryDto);
-  }
+  // @Post()
+  // create(@Body() createDeviceLocaleHistoryDto: CreateDeviceLocaleHistoryDto) {
+  //   return this.deviceLocaleHistoryService.create(createDeviceLocaleHistoryDto);
+  // }
 
   @Get()
   findAll() {
