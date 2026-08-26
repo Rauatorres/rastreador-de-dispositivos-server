@@ -1,4 +1,5 @@
-import { ConnectionConfig } from 'src/connection-configs/entities/connection-config.entity';
+import type { ConnectionConfigs } from 'src/connection-configs/connection-configs.interface';
+// import { ConnectionConfigsEntity } from 'src/connection-configs/entities/connection-config.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -9,5 +10,6 @@ export class DeviceLocaleHistory {
   @Column('timestamptz')
   date!: Date;
 
-  connectionConfigs!: ConnectionConfig;
+  @Column('simple-json')
+  connectionConfigs!: ConnectionConfigs;
 }

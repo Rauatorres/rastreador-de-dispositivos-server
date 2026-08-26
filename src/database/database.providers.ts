@@ -11,8 +11,8 @@ export const databaseProviders = [
         port: process.env.DB_PORT ? +process.env.DB_PORT : 5432,
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
-        database: 'postgres',
-        // database: 'rastreador-de-dispositivos',
+        // database: 'postgres',
+        database: 'rastreador-de-dispositivos',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
       });

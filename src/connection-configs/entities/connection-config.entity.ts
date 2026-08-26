@@ -6,9 +6,10 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { ConnectionConfigs } from '../connection-configs.interface';
 
 @Entity()
-export class ConnectionConfig {
+export class ConnectionConfigsEntity implements ConnectionConfigs {
   @PrimaryGeneratedColumn()
   id!: string;
 

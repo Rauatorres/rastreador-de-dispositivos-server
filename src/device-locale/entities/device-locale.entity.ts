@@ -1,4 +1,4 @@
-import { ConnectionConfig } from 'src/connection-configs/entities/connection-config.entity';
+import { ConnectionConfigsEntity } from 'src/connection-configs/entities/connection-config.entity';
 import {
   Column,
   Entity,
@@ -18,10 +18,10 @@ export class DeviceLocale {
   @Column({ type: 'float', default: 0 })
   lng!: number;
 
-  @OneToOne(() => ConnectionConfig, {
+  @OneToOne(() => ConnectionConfigsEntity, {
     cascade: true,
     onDelete: 'CASCADE',
   })
   @JoinColumn()
-  connectionConfigs!: ConnectionConfig;
+  connectionConfigs!: ConnectionConfigsEntity;
 }
