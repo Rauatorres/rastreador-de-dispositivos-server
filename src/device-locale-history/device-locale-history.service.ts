@@ -33,13 +33,13 @@ export class DeviceLocaleHistoryService {
   async saveDevicesLocaleInHistory() {
     const connectionConfigs = await this.connectionConfigsService.findAll();
     for (const connectionConfig of connectionConfigs) {
-      // const newDeviceLocaleHistoryRegister = await this.create({
-      //   connectionConfigsId: connectionConfig.id,
-      // });
-      // console.log(newDeviceLocaleHistoryRegister);
-      await this.create({
+      const newDeviceLocaleHistoryRegister = await this.create({
         connectionConfigsId: connectionConfig.id,
       });
+      console.log(newDeviceLocaleHistoryRegister);
+      // await this.create({
+      //   connectionConfigsId: connectionConfig.id,
+      // });
     }
   }
 
