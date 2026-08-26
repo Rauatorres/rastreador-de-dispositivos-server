@@ -73,9 +73,6 @@ export class DeviceLocaleHistoryService {
     //   });
 
     return await this.deviceLoacaleHistoryRepository.find({
-      relations: {
-        connectionConfigs: true,
-      },
       order: {
         date: 'ASC',
       },
