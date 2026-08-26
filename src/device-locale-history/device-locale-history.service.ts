@@ -29,7 +29,7 @@ export class DeviceLocaleHistoryService {
   //   console.log('testando interval');
   // }
 
-  @Interval(1000)
+  @Interval(5 * 60000)
   async saveDevicesLocaleInHistory() {
     const connectionConfigs = await this.connectionConfigsService.findAll();
     for (const connectionConfig of connectionConfigs) {
